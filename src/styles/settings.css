@@ -1,0 +1,19 @@
+@import '_colors.css';
+
+/*
+* BASIC SETUP
+*/
+:global(#root) {
+  min-height: inherit;
+}
+
+html,
+body {
+  background-color: var(--white);
+  color: var(--dark-gray);
+  font-size: 62.5%; /* 62.5% of 16px = 10px */
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -1,0 +1,28 @@
+module.exports = {
+  moduleNameMapper: {
+    '^.+\\.(css)$': 'identity-obj-proxy',
+    '^.+\\.(png|jpg|jpeg|svg|txt|ico)$': '<rootDir>/tests/empty-module.js',
+    '^_modules/(.*)': '<rootDir>/src/modules/$1',
+    '^_components/(.*)': '<rootDir>/src/components/$1',
+    '^_config/(.*)': '<rootDir>/src/config/$1',
+    '^_services/(.*)': '<rootDir>/src/services/$1',
+    '^_models/(.*)': '<rootDir>/src/models/$1',
+    '^_models': '<rootDir>/src/models',
+    '^_views/(.*)': '<rootDir>/src/views/$1',
+    '^_utils/(.*)': '<rootDir>/src/utils/$1',
+    '^_styles/(.*)': '<rootDir>/src/styles/$1',
+    '^_store/(.*)': '<rootDir>/src/store/$1',
+    '^_hocs/(.*)': '<rootDir>/src/hocs/$1',
+    '^_hooks/(.*)': '<rootDir>/src/hooks/$1',
+    '^_middlewares/(.*)': '<rootDir>/src/middlewares/$1',
+    '^_assets/(.*)': '<rootDir>/src/assets/$1',
+    '\\.worker.js': '<rootDir>/tests/__mocks__/workerMock.js',
+    '^_privateDependencies/(.*)': '<rootDir>/private-dependencies/$1',
+  },
+  setupFilesAfterEnv: ['./tests/setup.js'],
+  testPathIgnorePatterns: [
+    './private-dependencies',
+    '<rootDir>[/\\\\](dist|dist-server|node_modules|.storybook)[/\\\\]',
+  ],
+  verbose: true,
+}

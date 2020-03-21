@@ -1,0 +1,122 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:10.17.0
+
+version: 2
+jobs:
+  install_dependencies:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./
+  stylelint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: yarn stylelint
+  eslint:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: yarn eslint
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: yarn test
+  deploy_staging:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      - run: sudo python get-pip.py
+      - run: sudo pip install awscli --upgrade
+      - run: yarn build
+      - run: aws s3 sync build/ s3://$REACT_S3_BUCKET_STAGING --delete
+      - run: aws cloudfront create-invalidation --paths '/*' --distribution-id $AWS_DISTRIBUTION_ID_STAGING
+  deploy_production:
+    <<: *defaults
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: sudo apt-get update && sudo apt-get install -y python-dev
+      - run: sudo curl -O https://bootstrap.pypa.io/get-pip.py
+      - run: sudo python get-pip.py
+      - run: sudo pip install awscli --upgrade
+      - run: yarn build
+      - run: aws s3 sync build/ s3://$REACT_S3_BUCKET_PRODUCTION --delete
+      - run: aws cloudfront create-invalidation --paths '/*' --distribution-id $AWS_DISTRIBUTION_ID_PRODUCTION
+
+workflows:
+  version: 2
+  main_workflow:
+    jobs:
+      - install_dependencies:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+      - stylelint:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+          requires:
+            - install_dependencies
+      - eslint:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+          requires:
+            - install_dependencies
+      - test:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+          requires:
+            - install_dependencies
+      - deploy_staging:
+          filters:
+            branches:
+              only:
+                - staging
+          requires:
+            - stylelint
+            - eslint
+            - test
+      - deploy_production:
+          filters:
+            tags:
+              only: /v[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
+          requires:
+            - stylelint
+            - eslint
+            - test

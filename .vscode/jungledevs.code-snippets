@@ -1,0 +1,122 @@
+{
+	"JungleDevs_Model": {
+		"scope": "javascript, javascriptreact",
+		"prefix": "jd:model",
+		"body": [
+			"import Model from './model'",
+			"",
+			"class ${1:ModelName} extends Model({",
+			" ${2:keyName}: ${3|'',undefined,null|},",
+			"}) {}",
+			"",
+			"export default ${1:ModelName}"
+		],
+		"description": "Create a new react model"
+	},
+	"JungleDevs_Actions": {
+		"scope": "javascript, javascriptreact",
+		"prefix": "jd:actions",
+		"body": [
+			"import { defineAction } from '_utils/redux'",
+			"import * as ${1:serviceFile} from '_services/${2:filename}'",
+			"",
+			"export const ${3:ACTION_CREATOR} = defineAction('${3:ACTION_CREATOR}')",
+			"",
+			"export const ${4:actionName} = (${5:params}) => (dispatch${6:, getState}) =>",
+			"  dispatch({",
+			"    type: ${3:ACTION_CREATOR}.ACTION,",
+			"    payload: ${1:serviceFile}.${7:serviceFunction}(${8:getState().user.authToken}),",
+			"  })",
+			"",
+		],
+		"description": "Create a new react action"
+	},
+	"JungleDevs_Reducer": {
+		"scope": "javascript, javascriptreact",
+		"prefix": "jd:reducer",
+		"body": [
+			"import { createReducer } from '_utils/redux'",
+			"import { ${1:ModelName} } from '_models'",
+			"",
+			"import { ${2:ACTION_CREATOR} } from './actions'",
+			"",
+			"const INITIAL_STATE = new ${1:ModelName}()",
+			"",
+			"const ${3:reducerName} = createReducer(INITIAL_STATE, {",
+			"  [${2:ACTION_CREATOR}.${4|FULFILLED,PENDING,REJECTED|}]: (state, { ${5:payload}, ${6:meta} }) => {",
+			"    ${7}",
+			"  },",
+			"})",
+			"",
+			"export default ${3:reducerName}",
+			"",
+		],
+		"description": "Create a new react reducer"
+	},
+	"JungleDevs_Connected_View": {
+		"scope": "javascript, javascriptreact",
+		"prefix": "jd:container",
+		"body": [
+			"import React from 'react'",
+			"import PropTypes from 'prop-types'",
+			"import { connect } from 'react-redux'",
+			"",
+			"import { ${1:actionName} } from '_modules/${2:folderName}/actions'",
+			"import { ${3:ModelName} } from '_models'",
+			"",
+			"// uncomment/remove the following line",
+			"// import styles from './styles.css'",
+			"",
+			"const mapStateToProps = () => ({})",
+			"",
+			"const mapDispatchToProps = {}",
+			"",
+			"const ${4:ComponentName} = () => <div />",
+			"",
+			"${4:ComponentName}.propTypes = {}",
+			"",
+			"${4:ComponentName}.defaultProps = {}",
+			"",
+			"export default connect(",
+			"  mapStateToProps,",
+			"  mapDispatchToProps",
+			")(React.memo(${4:ComponentName}))",
+			""
+		],
+		"description": "Create a new connected component/view"
+	},
+	"JungleDevs_Component": {
+		"scope": "javascript, javascriptreact",
+		"prefix": "jd:component",
+		"body": [
+			"import React from 'react'",
+			"import PropTypes from 'prop-types'",
+			"",
+			"// uncomment/remove the following line",
+			"// import styles from './styles.css'",
+			"",
+			"const ${4:ComponentName} = () => <div />",
+			"",
+			"${4:ComponentName}.propTypes = {}",
+			"",
+			"${4:ComponentName}.defaultProps = {}",
+			"",
+			"export default React.memo(${4:ComponentName})",
+			""
+		],
+		"description": "Create a new unconnected component/view",
+	},
+	"JungleDevs_Service": {
+		"prefix": "jd:service",
+		"body": [
+			"import { ${1|get,post,del,patch,put,upload|} } from './requests'",
+			"",
+			"export const ${2:serviceName} = () =>",
+			"  ${1}([], {",
+			"    removeTrailingSlash: ${3|true,false|},",
+			"  })",
+			""
+		],
+		"description": "Create a new service"
+	}
+}
