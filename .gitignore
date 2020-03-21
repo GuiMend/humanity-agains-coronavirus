@@ -121,6 +121,9 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+# Terraform
+infrastructure/.terraform/
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
