@@ -3,6 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 
 import en from './resources/en.json'
+import pt from './resources/pt.json'
 
 i18n
   .use(LanguageDetector)
@@ -16,8 +17,7 @@ i18n
     },
     ns: ['common'],
     resources: {
-      // pt,
-      // es,
+      pt,
       en,
     },
     useSuspense: false,
