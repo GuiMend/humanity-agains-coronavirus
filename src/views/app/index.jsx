@@ -8,10 +8,12 @@ import useStyles from './styles'
 const App = ({ children }) => {
   const styles = useStyles()
   return (
-    <div className={styles.App}>
+    <div className={styles.app}>
       <Header />
-      <div className={styles.toolbar} />
-      <section className={styles.content}>{children}</section>
+      <div className={styles.background}>
+        <div className={styles.toolbar} />
+        <section className={styles.content}>{children}</section>
+      </div>
     </div>
   )
 }
