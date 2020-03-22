@@ -1,0 +1,9 @@
+{
+  "common": {
+    "title": "Humanity against Coronavirus",
+    "totalCases": "Total cases",
+    "totalDeaths": "Total deaths",
+    "totalRecovered": "Total recovered",
+    "lastUpdated": "Last updated"
+  }
+}
