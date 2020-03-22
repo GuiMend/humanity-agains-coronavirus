@@ -9,7 +9,7 @@
 
 html,
 body {
-  background-color: var(--white);
+  background-color: var(--light-gray);
   color: var(--dark-gray);
   font-size: 62.5%; /* 62.5% of 16px = 10px */
   text-rendering: optimizeLegibility;

@@ -1,6 +1,6 @@
-# React Boilerplate
+# Humanity Against Coronavirus
 
-This is the JungleDevs boilerplate for React Applications. \
+This is the open source project with the objective to help disseminate usefull information about the Novel Coronavirus in the hope to help contain the spread. This project was based on JungleDevs boilerplate for React Applications. \
 It uses React 16 + Redux + Reach Router.
 
 ## Requirements
@@ -8,24 +8,9 @@ It uses React 16 + Redux + Reach Router.
 - Node v10.17.0 installed
 - [Yarn Package Manager](https://yarnpkg.com/lang/en/)
 
-## Options Available
-
-You can select to add:
-
-- Storybook
-- Express server with Server-side Rendering
-
-## Setup
-
-To use this boilerplate follow this steps:
-
-- Clone this repository: `git clone https://github.com/JungleDevs/boilerplate-react.git PROJECT_NAME`
-- Enter the recently created folder
-- Run: `yarn`
-- Run: `node setup.js` and follow the steps
-
 ## Running on development
 
+- Install packages: `yarn`
 - To run the application in development mode use the following command: `yarn start`
 
 ## Building the production
@@ -97,3 +82,5 @@ For those who are using VS Code as the code editor, three extensions are require
 Since this boilerplate is built on top of [CRA](https://github.com/facebook/create-react-app), all the env variables must have a REACT*APP* prefix. E.g.: REACT_APP_API_URL.
 
 Files to store the environments can be created acording to the NODE_ENV used. For `development`, for e.g., we can create a file with the name `.env.development` and insert all our environment files there. Same goes for production: `.env.production`.
+
+As for the release v0.1.0, no enviromental variables are needed.
