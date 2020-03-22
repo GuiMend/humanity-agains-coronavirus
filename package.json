@@ -1,6 +1,6 @@
 {
   "name": "humanity-against-coronavirus",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "build": "cross-env GENERATE_SOURCEMAP=false SKIP_PREFLIGHT_CHECK=true node scripts/customized-config build",

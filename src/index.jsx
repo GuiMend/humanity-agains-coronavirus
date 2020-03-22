@@ -11,6 +11,7 @@ import ReactGA from 'react-ga'
 import { GA_ID } from '_config/environment'
 
 import './bootstrap'
+import registerServiceWorker from './registerServiceWorker'
 import configureStore from './store/configure-store'
 import Router from './router'
 import './i18n'
@@ -73,5 +74,7 @@ const root = () => {
     document.getElementById('root')
   )
 }
+
+registerServiceWorker()
 
 root()

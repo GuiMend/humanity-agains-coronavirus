@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.1.1...v0.1.2) (2020-03-22)
+
+
+### Features
+
+* **PWA:** Register service worker and update manifest ([3966815](https://github.com/GuiMend/humanity-agains-coronavirus/commit/39668152b5ba8f04266698e01e408d93df39f3f0))
+
+
+
 ## [0.1.1](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.1.0...v0.1.1) (2020-03-22)
 
 
