@@ -19,6 +19,7 @@
     "monitor": "COVID-19 Cases Monitor"
   },
   "tooltip": {
+    "order": "Order",
     "country": "Countries affected",
     "cases": "Total number of cases confirmed",
     "todayCases": "New confirmed daily cases. The bigger the % increase from the day before, the stronger the color.",
