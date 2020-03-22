@@ -83,4 +83,6 @@ Since this boilerplate is built on top of [CRA](https://github.com/facebook/crea
 
 Files to store the environments can be created acording to the NODE_ENV used. For `development`, for e.g., we can create a file with the name `.env.development` and insert all our environment files there. Same goes for production: `.env.production`.
 
-As for the release v0.1.0, no enviromental variables are needed.
+As for the release v0.1.1, the enviromental variables used are:
+
+- REACT_APP_GA (this is not necessary for the application to run)

@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.1.0...v0.1.1) (2020-03-22)
+
+
+### Features
+
+* **GA:** Add google analytics ([cdb543a](https://github.com/GuiMend/humanity-agains-coronavirus/commit/cdb543a45e46d3e833af83960492a36fe643a41b))
+
+
+
 # [0.1.0](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.0.0...v0.1.0) (2020-03-22)
 
 

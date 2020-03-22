@@ -6,6 +6,9 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
+import ReactGA from 'react-ga'
+
+import { GA_ID } from '_config/environment'
 
 import './bootstrap'
 import configureStore from './store/configure-store'
@@ -55,6 +58,8 @@ const theme = createMuiTheme({
     },
   },
 })
+
+ReactGA.initialize(GA_ID)
 
 const root = () => {
   const initialState = {}

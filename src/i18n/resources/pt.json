@@ -19,6 +19,7 @@
     "monitor": "Acompanhamento de casos"
   },
   "tooltip": {
+    "order": "Ordem",
     "country": "Países afetados",
     "cases": "Número total de casos confirmados",
     "todayCases": "Novos casos diários confirmados. Quanto maior a % de aumento do dia anterior, mais forte a cor.",

@@ -1,6 +1,6 @@
 {
   "name": "humanity-against-coronavirus",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "build": "cross-env GENERATE_SOURCEMAP=false SKIP_PREFLIGHT_CHECK=true node scripts/customized-config build",
@@ -34,6 +34,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-ga": "^2.7.0",
     "react-google-charts": "^3.0.15",
     "react-i18next": "^11.3.4",
     "react-redux": "^7.1.0",
