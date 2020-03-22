@@ -13,3 +13,15 @@ export const getAllCovidCases = () => dispatch =>
     type: GET_ALL_CASES.ACTION,
     payload: covidService.getAllCases(),
   })
+
+export const getCountries = () => dispatch =>
+  dispatch({
+    type: GET_COUNTRIES.ACTION,
+    payload: covidService.getCountries(),
+  })
+
+export const getJHUCovidCases = () => dispatch =>
+  dispatch({
+    type: GET_JHU_CASES.ACTION,
+    payload: covidService.getJHUCases(),
+  })

@@ -4,6 +4,16 @@
     "totalCases": "Total cases",
     "totalDeaths": "Total deaths",
     "totalRecovered": "Total recovered",
-    "lastUpdated": "Last updated"
+    "lastUpdated": "Last updated",
+    "country": "Country",
+    "cases": "Cases",
+    "todayCases": "New Cases",
+    "deaths": "Deaths",
+    "todayDeaths": "New Deaths",
+    "recovered": "Recovered",
+    "active": "Active",
+    "critical": "Critical",
+    "casesPerOneMillion": "Total cases / 1M population",
+    "populationPercentAffected": "Population Affected (%)"
   }
 }
