@@ -48,6 +48,19 @@ export const upload = (...params) => parseParams(...params)(instance.post)
 export const del = (...params) => parseParams(...params)(instance.delete)
 export const get = (...params) => parseParams(...params)(instance.get)
 
+export const postWithCustomInstance = (...params) => newInstance =>
+  parseParams(...params)(newInstance.post)
+export const patchWithCustomInstance = (...params) => newInstance =>
+  parseParams(...params)(newInstance.patch)
+export const putWithCustomInstance = (...params) => newInstance =>
+  parseParams(...params)(newInstance.put)
+export const uploadWithCustomInstance = (...params) => newInstance =>
+  parseParams(...params)(newInstance.post)
+export const delWithCustomInstance = (...params) => newInstance =>
+  parseParams(...params)(newInstance.delete)
+export const getWithCustomInstance = (...params) => newInstance =>
+  parseParams(...params)(newInstance.get)
+
 instance.getURL = url => API_URL + parseURL(url)
 
 export default instance
