@@ -21,6 +21,10 @@ export default makeStyles(theme => ({
     color: theme.palette.custom.lightGray,
     fontSize: '1rem',
   },
+  link: {
+    textDecoration: 'none',
+    color: theme.palette.custom.purple,
+  },
 }))
 
 export const StyledTypograpgy = withStyles(() => ({

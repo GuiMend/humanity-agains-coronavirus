@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Paper, Grid, CircularProgress } from '@material-ui/core'
+import { Paper, Grid } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 
-import { getAllCovidCases } from '_modules/covid/actions'
 import { allCasesSelector, loadingAllCases } from '_modules/covid/selector'
+import { getAllCovidCases } from '_modules/covid/actions'
 import { formatTimeZoneDate } from '_utils/date-format'
+import Loader from '_components/loader'
 
 import useStyles, { StyledTypograpgy } from './styles'
 
@@ -22,7 +23,7 @@ const CasesSummary = () => {
   }, [dispatch])
 
   if (loadingAllCovidCases) {
-    return <CircularProgress color="secondary" />
+    return <Loader />
   }
 
   return (
@@ -55,6 +56,17 @@ const CasesSummary = () => {
         <Grid item xs={12} md={4}>
           <StyledTypograpgy className={styles.time}>
             {t('common:lastUpdated')}: {date}
+          </StyledTypograpgy>
+          <StyledTypograpgy className={styles.time}>
+            {t('common:source')}:{' '}
+            <a
+              className={styles.link}
+              href="https://worldometers.info/coronavirus"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              worldometers
+            </a>
           </StyledTypograpgy>
         </Grid>
       </Grid>

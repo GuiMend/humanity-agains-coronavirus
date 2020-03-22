@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/styles'
 
+import ComunityWithMask from '_assets/images/people_with_mask.jpg'
+
 export default makeStyles(theme => ({
   toolbar: theme.mixins.toolbar,
   content: {
@@ -8,7 +10,14 @@ export default makeStyles(theme => ({
       padding: theme.spacing(3),
     },
     [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
     },
+  },
+  background: {
+    height: '400px',
+    background: `url(${ComunityWithMask})`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
   },
 }))

@@ -18,12 +18,21 @@ const theme = createMuiTheme({
       main: '#fff',
     },
     secondary: {
-      main: '#414042',
+      main: '#70dbbe',
     },
     custom: {
       red: '#A63232',
       green: '#4BB543',
       lightGray: '#848d8f',
+      lightYellow: '#ffffed',
+      mediumOrange: '#F9CF7F',
+      highOrange: '#FF933A',
+      lightGreen: '#93FFA7',
+      lightRed: '#FFDBDB',
+      mediumRed: '#F49292',
+      highRed: '#F44B4B',
+      safetyOrange: '#FF7900',
+      purple: '#5e35b1',
     },
   },
   overrides: {
@@ -35,6 +44,9 @@ const theme = createMuiTheme({
         fontSize: '1.4rem',
       },
       h1: {
+        fontSize: '3.5rem',
+      },
+      h2: {
         fontSize: '2rem',
       },
       caption: {
