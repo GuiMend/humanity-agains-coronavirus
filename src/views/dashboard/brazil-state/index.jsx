@@ -17,7 +17,6 @@ import useDashboardStyles from '_views/dashboard/styles'
 import { formatTimeZoneDate } from '_utils/date-format'
 import CasesSummary from '_components/cases-summary'
 import CovidTable from '_components/covid-table'
-import BrazilMap from '_components/brazil-map'
 
 const BrazilStateDashboard = ({ state }) => {
   const stylesDashboard = useDashboardStyles()
@@ -78,9 +77,6 @@ const BrazilStateDashboard = ({ state }) => {
           source={t('common:brazilSource')}
           date={date}
         />
-      </Grid>
-      <Grid item className={stylesDashboard.fullWidth}>
-        <BrazilMap />
       </Grid>
       <Grid item className={stylesDashboard.fullWidth}>
         <CovidTable
