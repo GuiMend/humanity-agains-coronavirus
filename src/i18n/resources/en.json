@@ -6,6 +6,7 @@
     "totalRecovered": "Total recovered",
     "lastUpdated": "Last updated",
     "country": "Country",
+    "state": "State",
     "cases": "Cases",
     "todayCases": "New Cases",
     "deaths": "Deaths",
@@ -14,14 +15,24 @@
     "active": "Active",
     "critical": "Critical",
     "casesPerOneMillion": "Total cases / 1M population",
+    "confirmedPer100kInhabitants": "Total cases / 100k population",
     "populationPercentAffected": "Population Affected (%)",
     "source": "Source",
-    "monitor": "COVID-19 Cases Monitor"
+    "monitor": "COVID-19 Cases World",
+    "monitorBrazil": "COVID-19 Cases - Brazil",
+    "deathRate": "Death rate",
+    "total": "Total",
+    "noData": "No dada found",
+    "seeDetails": "Details",
+    "paranyuSource": "Made by Paranyu",
+    "brazilSource": "Secretarias de Saúde das Unidades Federativas, data treted by Álvaro Justen/Brasil.IO."
   },
   "tooltip": {
     "order": "Order",
     "country": "Countries affected",
+    "state": "State affected",
     "cases": "Total number of cases confirmed",
+    "deathRate": "Total deaths / Total cases",
     "todayCases": "New confirmed daily cases. The bigger the % increase from the day before, the stronger the color.",
     "deaths": "Total number of people that died from COVID-19",
     "todayDeaths": "New confirmed daily deaths. The bigger the % increase from the day before, the stronger the color.",
@@ -29,6 +40,7 @@
     "active": "Current active cases",
     "critical": "Patients in critical condition",
     "casesPerOneMillion": "Total cases per 1 Million population",
+    "confirmedPer100kInhabitants": "Total cases per 100k population (affected places)",
     "populationPercentAffected": "Percentage of the country's population affected based on Tot cases / 1M pop"
   },
   "country": {
