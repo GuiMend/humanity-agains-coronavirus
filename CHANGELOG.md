@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.1.2...v0.1.3) (2020-03-22)
+
+
+### Bug Fixes
+
+* **PWA:** Enable installability ([4b98239](https://github.com/GuiMend/humanity-agains-coronavirus/commit/4b982393b79b00a8dfeae7a037dbad913ae6ffd6))
+
+
+
 ## [0.1.2](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.1.1...v0.1.2) (2020-03-22)
 
 
