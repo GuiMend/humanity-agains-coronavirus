@@ -26,6 +26,8 @@
     "cross-env": "^6.0.0",
     "date-fns": "^2.11.0",
     "date-fns-tz": "^1.0.10",
+    "highcharts": "^8.0.4",
+    "highcharts-react-official": "^3.0.0",
     "humps": "^2.0.1",
     "i18next": "^19.3.3",
     "i18next-browser-languagedetector": "^4.0.2",
