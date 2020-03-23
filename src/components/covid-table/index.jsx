@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import classnames from 'classnames'
+import { List } from 'immutable'
+import PropTypes from 'prop-types'
 import {
   TableContainer,
   Table,
@@ -15,27 +16,46 @@ import {
   Tooltip,
 } from '@material-ui/core'
 
-import { countriesCasesSelector, loadingCountriesCases } from '_modules/covid/selector'
-import { getCountries, getJHUCovidCases } from '_modules/covid/actions'
 import Loader from '_components/loader'
 
-import columns from './constants'
+import { WORLDOMETER_DATA_FORMAT, BRAZIL_DATA_FORMAT, BRAZIL_CITY_DATA_FORMAT } from './constants'
 import useStyles from './styles'
 
-const CovidTable = () => {
+const CovidTable = ({ columns, data, loading, brazil }) => {
   const styles = useStyles()
-  const dispatch = useDispatch()
   const { t } = useTranslation(['common', 'country'])
-  const [orderBy, setOrderBy] = useState('cases')
+  const [orderBy, setOrderBy] = useState(brazil ? 'confirmed' : 'cases')
   const [order, setOrder] = useState('desc')
-  const loadingCovidByCountries = useSelector(loadingCountriesCases)
-  const covidByCountries = useSelector(countriesCasesSelector)
   const COLUMNS = columns(t)
 
-  useEffect(() => {
-    dispatch(getCountries())
-    dispatch(getJHUCovidCases())
-  }, [dispatch])
+  const firstRow = data.reduce(
+    (acc, cur) => ({
+      ...acc,
+      cases: acc.cases + cur.cases,
+      confirmed: acc.confirmed + cur.confirmed,
+      todayCases: acc.todayCases + cur.todayCases,
+      deaths: acc.deaths + cur.deaths,
+      todayDeaths: acc.todayDeaths + cur.todayDeaths,
+      recovered: acc.recovered + cur.recovered,
+      active: acc.active + cur.active,
+      critical: acc.critical + cur.critical,
+    }),
+    {
+      city: t('common:totalState'),
+      state: t('common:totalCountry'),
+      country: t('common:totalWorld'),
+      casesPerMillion: null,
+      confirmedPer100kInhabitants: null,
+      cases: 0,
+      confirmed: 0,
+      todayCases: 0,
+      deaths: 0,
+      todayDeaths: 0,
+      recovered: 0,
+      active: 0,
+      critical: 0,
+    }
+  )
 
   const descendingComparator = useCallback(
     (a, b) => {
@@ -75,7 +95,7 @@ const CovidTable = () => {
     [order, orderBy]
   )
 
-  if (loadingCovidByCountries) {
+  if (loading) {
     return <Loader />
   }
 
@@ -111,27 +131,64 @@ const CovidTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {covidByCountries?.length &&
-            stableSort(covidByCountries, getComparator()).map((row, rowIndex) => (
-              <TableRow key={row.country} hover>
+          {data?.length && (
+            <>
+              <TableRow hover>
                 {COLUMNS.map(({ format, applyStyle, className, ...column }) => (
-                  <TableCell
-                    {...column}
-                    className={classnames(styles[column.id], {
-                      [styles[className(row)]]: applyStyle(row),
-                    })}
-                  >
+                  <TableCell {...column} className={classnames(styles[column.id], styles.total)}>
                     <Typography variant="body2">
-                      {format({ ...row, place: rowIndex + 1 })}
+                      {format({ ...firstRow, hideDetails: true })}
                     </Typography>
                   </TableCell>
                 ))}
               </TableRow>
-            ))}
+              {stableSort(data, getComparator()).map((row, rowIndex) => (
+                <TableRow key={row.country || row.city || row.state} hover>
+                  {COLUMNS.map(({ format, applyStyle, className, ...column }) => (
+                    <TableCell
+                      {...column}
+                      className={classnames(styles[column.id], {
+                        [styles[className(row)]]: applyStyle(row),
+                      })}
+                    >
+                      <Typography variant="body2">
+                        {format({ ...row, place: rowIndex + 1 })}
+                      </Typography>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </>
+          )}
         </TableBody>
       </Table>
     </TableContainer>
   )
+}
+
+CovidTable.propTypes = {
+  columns: PropTypes.oneOf([WORLDOMETER_DATA_FORMAT, BRAZIL_DATA_FORMAT, BRAZIL_CITY_DATA_FORMAT]),
+  loading: PropTypes.bool,
+  brazil: PropTypes.bool,
+  data: PropTypes.oneOfType([
+    PropTypes.instanceOf(List),
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        cases: PropTypes.number,
+        deaths: PropTypes.number,
+        confirmed: PropTypes.number,
+        recovered: PropTypes.number,
+        todayCases: PropTypes.number,
+        todayDeaths: PropTypes.number,
+      })
+    ),
+  ]).isRequired,
+}
+
+CovidTable.defaultProps = {
+  columns: WORLDOMETER_DATA_FORMAT,
+  loading: false,
+  brazil: false,
 }
 
 export default CovidTable

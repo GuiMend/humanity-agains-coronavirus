@@ -1,28 +1,18 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import PropTypes from 'prop-types'
+import classnames from 'classnames'
 import { Paper, Grid } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 
-import { allCasesSelector, loadingAllCases } from '_modules/covid/selector'
-import { getAllCovidCases } from '_modules/covid/actions'
-import { formatTimeZoneDate } from '_utils/date-format'
 import Loader from '_components/loader'
 
 import useStyles, { StyledTypograpgy } from './styles'
 
-const CasesSummary = () => {
+const CasesSummary = ({ loading, allCovidCases, date, link, source }) => {
   const styles = useStyles()
-  const dispatch = useDispatch()
   const { t } = useTranslation(['common'])
-  const loadingAllCovidCases = useSelector(loadingAllCases)
-  const allCovidCases = useSelector(allCasesSelector)
-  const date = allCovidCases?.updated && formatTimeZoneDate(new Date(allCovidCases?.updated))
 
-  useEffect(() => {
-    dispatch(getAllCovidCases())
-  }, [dispatch])
-
-  if (loadingAllCovidCases) {
+  if (loading) {
     return <Loader />
   }
 
@@ -49,29 +39,47 @@ const CasesSummary = () => {
           <StyledTypograpgy variant="body2" className={styles.green}>
             {t('common:totalRecovered')}
           </StyledTypograpgy>
-          <StyledTypograpgy variant="h1" className={styles.green}>
-            <b>{allCovidCases?.recovered?.toLocaleString()}</b>
+          <StyledTypograpgy
+            component="p"
+            variant={allCovidCases?.recovered ? 'h1' : 'caption'}
+            className={classnames({ [styles.green]: allCovidCases?.recovered })}
+          >
+            {allCovidCases?.recovered ? (
+              <b>{allCovidCases.recovered.toLocaleString()}</b>
+            ) : (
+              t('common:noData')
+            )}
           </StyledTypograpgy>
         </Grid>
         <Grid item xs={12} md={4}>
           <StyledTypograpgy className={styles.time}>
-            {t('common:lastUpdated')}: {date}
+            {t('common:lastUpdated')}: {date || '-'}
           </StyledTypograpgy>
           <StyledTypograpgy className={styles.time}>
             {t('common:source')}:{' '}
-            <a
-              className={styles.link}
-              href="https://worldometers.info/coronavirus"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              worldometers
+            <a className={styles.link} href={link} rel="noopener noreferrer" target="_blank">
+              {source}
             </a>
           </StyledTypograpgy>
         </Grid>
       </Grid>
     </Paper>
   )
+}
+
+CasesSummary.propTypes = {
+  loading: PropTypes.bool,
+  allCovidCases: PropTypes.shape().isRequired,
+  date: PropTypes.string,
+  link: PropTypes.string,
+  source: PropTypes.string,
+}
+
+CasesSummary.defaultProps = {
+  loading: false,
+  link: 'https://worldometers.info/coronavirus',
+  source: 'worldometers',
+  date: '',
 }
 
 export default CasesSummary

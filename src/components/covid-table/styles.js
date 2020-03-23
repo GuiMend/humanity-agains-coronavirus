@@ -18,6 +18,9 @@ export default makeStyles(theme => ({
   headCell: {
     textAlign: 'center',
   },
+  total: {
+    backgroundColor: theme.palette.custom.gray1,
+  },
   todayCasesRowNone: {
     borderRadius: '4px',
     backgroundColor: theme.palette.custom.lightGreen,

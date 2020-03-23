@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { AppBar, Toolbar, IconButton, Typography, Button, Grid } from '@material-ui/core'
-import MenuIcon from '@material-ui/icons/Menu'
+import { AppBar, Toolbar, Typography, Button, Grid } from '@material-ui/core'
+// import MenuIcon from '@material-ui/icons/Menu'
 import { useTranslation } from 'react-i18next'
 
 const Header = () => {
@@ -21,9 +21,9 @@ const Header = () => {
       <Toolbar>
         <Grid container direction="row" justify="space-between" alignItems="center">
           <Grid item>
-            <IconButton edge="start" color="inherit" aria-label="menu">
+            {/* <IconButton edge="start" color="inherit" aria-label="menu">
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
           </Grid>
           <Grid item>
             <Typography variant="h5">{t('common:title')}</Typography>
