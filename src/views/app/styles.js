@@ -20,4 +20,13 @@ export default makeStyles(theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
   },
+  link: {
+    position: 'absolute',
+    right: '-27px',
+    top: '355px',
+    textDecoration: 'none',
+    color: theme.palette.custom.darkGray,
+    transform: 'rotate(-90deg)',
+    '-webkit-transform': 'rotate(-90deg)',
+  },
 }))

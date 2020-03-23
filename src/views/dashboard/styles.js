@@ -10,11 +10,17 @@ export default makeStyles(theme => ({
       marginBottom: '220px',
     },
     [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing(2),
       marginBottom: '160px',
     },
     [theme.breakpoints.down('xs')]: {
-      marginBottom: '180px',
+      marginTop: theme.spacing(1),
+      marginBottom: '150px',
     },
+  },
+  detailIcon: {
+    height: '20px',
+    width: '20px',
   },
   title: {
     textAlign: 'center',
@@ -22,5 +28,8 @@ export default makeStyles(theme => ({
   },
   fullWidth: {
     width: '100%',
+  },
+  link: {
+    float: 'right',
   },
 }))
