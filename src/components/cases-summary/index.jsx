@@ -70,7 +70,7 @@ const CasesSummary = ({ loading, allCovidCases, date, link, source }) => {
 CasesSummary.propTypes = {
   loading: PropTypes.bool,
   allCovidCases: PropTypes.shape().isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.string,
   link: PropTypes.string,
   source: PropTypes.string,
 }
@@ -79,6 +79,7 @@ CasesSummary.defaultProps = {
   loading: false,
   link: 'https://worldometers.info/coronavirus',
   source: 'worldometers',
+  date: '',
 }
 
 export default CasesSummary

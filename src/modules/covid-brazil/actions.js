@@ -2,7 +2,7 @@ import { defineAction } from '_utils/redux'
 import * as covidBrazilService from '_services/covid-brazil'
 
 export const GET_ALL_BRAZIL_CASES = defineAction('GET_ALL_BRAZIL_CASES')
-export const GET_BRAZIL_DETAILS = defineAction('GET_BRAZIL_DETAILS')
+export const GET_BRAZIL_LAST_UPDATED = defineAction('GET_BRAZIL_LAST_UPDATED')
 
 export const getAllBrazilCases = () => dispatch =>
   dispatch({
@@ -10,8 +10,8 @@ export const getAllBrazilCases = () => dispatch =>
     payload: covidBrazilService.getAllBrazilCases(),
   })
 
-export const getBrazilDetails = () => dispatch =>
+export const getBrazilLatUpdated = () => dispatch =>
   dispatch({
-    type: GET_BRAZIL_DETAILS.ACTION,
+    type: GET_BRAZIL_LAST_UPDATED.ACTION,
     payload: covidBrazilService.getBrazilDetails(),
   })

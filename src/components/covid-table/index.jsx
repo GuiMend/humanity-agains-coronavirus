@@ -18,7 +18,7 @@ import {
 
 import Loader from '_components/loader'
 
-import { WORLDOMETER_DATA_FORMAT, BRAZIL_DATA_FORMAT } from './constants'
+import { WORLDOMETER_DATA_FORMAT, BRAZIL_DATA_FORMAT, BRAZIL_CITY_DATA_FORMAT } from './constants'
 import useStyles from './styles'
 
 const CovidTable = ({ columns, data, loading, brazil }) => {
@@ -41,8 +41,9 @@ const CovidTable = ({ columns, data, loading, brazil }) => {
       critical: acc.critical + cur.critical,
     }),
     {
-      state: t('common:total'),
-      country: t('common:total'),
+      city: t('common:totalState'),
+      state: t('common:totalCountry'),
+      country: t('common:totalWorld'),
       casesPerMillion: null,
       confirmedPer100kInhabitants: null,
       cases: 0,
@@ -142,7 +143,7 @@ const CovidTable = ({ columns, data, loading, brazil }) => {
                 ))}
               </TableRow>
               {stableSort(data, getComparator()).map((row, rowIndex) => (
-                <TableRow key={row.country || row.state} hover>
+                <TableRow key={row.country || row.city || row.state} hover>
                   {COLUMNS.map(({ format, applyStyle, className, ...column }) => (
                     <TableCell
                       {...column}
@@ -166,7 +167,7 @@ const CovidTable = ({ columns, data, loading, brazil }) => {
 }
 
 CovidTable.propTypes = {
-  columns: PropTypes.oneOf([WORLDOMETER_DATA_FORMAT, BRAZIL_DATA_FORMAT]),
+  columns: PropTypes.oneOf([WORLDOMETER_DATA_FORMAT, BRAZIL_DATA_FORMAT, BRAZIL_CITY_DATA_FORMAT]),
   loading: PropTypes.bool,
   brazil: PropTypes.bool,
   data: PropTypes.oneOfType([

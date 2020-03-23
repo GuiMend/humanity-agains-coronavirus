@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { Grid, Typography, Link, Button } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
@@ -10,7 +11,7 @@ import {
   loadingBrazilAllCases,
   lastUpdatedSelector,
 } from '_modules/covid-brazil/selector'
-import { BRAZIL_DATA_FORMAT } from '_components/covid-table/constants'
+import { BRAZIL_CITY_DATA_FORMAT } from '_components/covid-table/constants'
 import { getAllBrazilCases, getBrazilLatUpdated } from '_modules/covid-brazil/actions'
 import useDashboardStyles from '_views/dashboard/styles'
 import { formatTimeZoneDate } from '_utils/date-format'
@@ -18,7 +19,7 @@ import CasesSummary from '_components/cases-summary'
 import CovidTable from '_components/covid-table'
 import BrazilMap from '_components/brazil-map'
 
-const BrazilDashboard = () => {
+const BrazilStateDashboard = ({ state }) => {
   const stylesDashboard = useDashboardStyles()
   const { t } = useTranslation()
   const dispatch = useDispatch()
@@ -27,11 +28,11 @@ const BrazilDashboard = () => {
   const lastUpdated = useSelector(lastUpdatedSelector)
   const date = lastUpdated && formatTimeZoneDate(lastUpdated)
 
-  const statesData = allBrazilCovidCases.filter(
-    entry => entry.placeType === 'state' && entry.isLast
+  const selectedStateData = allBrazilCovidCases.filter(
+    entry => entry.state === state.toUpperCase() && entry.isLast && entry.placeType === 'city'
   )
 
-  const summaryData = statesData.reduce(
+  const summaryData = selectedStateData.reduce(
     (acc, curr) => {
       return {
         cases: acc.cases + curr.confirmed,
@@ -54,23 +55,18 @@ const BrazilDashboard = () => {
     <Grid container spacing={2}>
       <Grid item className={stylesDashboard.titleWrapper}>
         <Typography className={stylesDashboard.title} variant="h1">
-          {t('common:monitorBrazil')}
+          {t('common:monitorBrazilState')} - {t(`brazil:${state.toUpperCase()}`)}
         </Typography>
       </Grid>
       <Grid item className={stylesDashboard.fullWidth}>
-        <Link
-          component={RouterLink}
-          to="/world"
-          variant="body2"
-          className={stylesDashboard.fullWidth}
-        >
+        <Link component={RouterLink} to="/" variant="body2" className={stylesDashboard.fullWidth}>
           <Button
             aria-label="ver detalhes"
             color="primary"
             variant="contained"
             startIcon={<ChevronLeftIcon className={stylesDashboard.detailIcon} />}
           >
-            <Typography>{t('common:goToWorld')}</Typography>
+            <Typography>{t('common:goToBrazil')}</Typography>
           </Button>
         </Link>
       </Grid>
@@ -89,8 +85,8 @@ const BrazilDashboard = () => {
       <Grid item className={stylesDashboard.fullWidth}>
         <CovidTable
           brazil
-          data={statesData}
-          columns={BRAZIL_DATA_FORMAT}
+          data={selectedStateData}
+          columns={BRAZIL_CITY_DATA_FORMAT}
           loading={loadingAllBrazilCovidCases}
         />
       </Grid>
@@ -98,4 +94,12 @@ const BrazilDashboard = () => {
   )
 }
 
-export default BrazilDashboard
+BrazilStateDashboard.propTypes = {
+  state: PropTypes.string,
+}
+
+BrazilStateDashboard.defaultProps = {
+  state: '',
+}
+
+export default BrazilStateDashboard
