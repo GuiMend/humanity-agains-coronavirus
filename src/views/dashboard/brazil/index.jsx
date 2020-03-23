@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography, Link, Button } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
+import { Link as RouterLink } from '@reach/router'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 
 import { allBrazilCasesSelector, loadingBrazilAllCases } from '_modules/covid-brazil/selector'
 import { BRAZIL_DATA_FORMAT } from '_components/covid-table/constants'
 import { getAllBrazilCases } from '_modules/covid-brazil/actions'
+import useDashboardStyles from '_views/dashboard/styles'
 import CasesSummary from '_components/cases-summary'
 import CovidTable from '_components/covid-table'
 import BrazilMap from '_components/brazil-map'
 
-import useStyles from './styles'
-
-const Dashboard = () => {
-  const styles = useStyles()
+const BrazilDashboard = () => {
+  const stylesDashboard = useDashboardStyles()
   const { t } = useTranslation()
   const dispatch = useDispatch()
   const allBrazilCovidCases = useSelector(allBrazilCasesSelector)
@@ -44,12 +45,29 @@ const Dashboard = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item className={styles.titleWrapper}>
-        <Typography className={styles.title} variant="h1">
+      <Grid item className={stylesDashboard.titleWrapper}>
+        <Typography className={stylesDashboard.title} variant="h1">
           {t('common:monitorBrazil')}
         </Typography>
       </Grid>
-      <Grid item className={styles.fullWidth}>
+      <Grid item className={stylesDashboard.fullWidth}>
+        <Link
+          component={RouterLink}
+          to="/world"
+          variant="body2"
+          className={stylesDashboard.fullWidth}
+        >
+          <Button
+            aria-label="ver detalhes"
+            color="primary"
+            variant="contained"
+            startIcon={<ChevronLeftIcon className={stylesDashboard.detailIcon} />}
+          >
+            <Typography>{t('common:goToWorld')}</Typography>
+          </Button>
+        </Link>
+      </Grid>
+      <Grid item className={stylesDashboard.fullWidth}>
         <CasesSummary
           loading={loadingAllBrazilCovidCases}
           allCovidCases={summaryData}
@@ -58,10 +76,10 @@ const Dashboard = () => {
           // date={date}
         />
       </Grid>
-      <Grid item className={styles.fullWidth}>
+      <Grid item className={stylesDashboard.fullWidth}>
         <BrazilMap />
       </Grid>
-      <Grid item className={styles.fullWidth}>
+      <Grid item className={stylesDashboard.fullWidth}>
         <CovidTable
           brazil
           data={statesData}
@@ -73,4 +91,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default BrazilDashboard

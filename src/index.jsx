@@ -41,6 +41,12 @@ const theme = createMuiTheme({
       purple: '#5e35b1',
     },
   },
+  typography: {
+    fontFamily: 'Roboto, sans-serif',
+    button: {
+      textTransform: 'none',
+    },
+  },
   overrides: {
     MuiTypography: {
       body1: {
