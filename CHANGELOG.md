@@ -1,3 +1,19 @@
+# [0.2.0](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.1.3...v0.2.0) (2020-03-23)
+
+
+### Features
+
+* Add brazil route and update theme ([a6242a8](https://github.com/GuiMend/humanity-agains-coronavirus/commit/a6242a8a28586340b52b97d392d6f71f12a1cfc4))
+* **Brazil State:** Implement see details by state ([b933226](https://github.com/GuiMend/humanity-agains-coronavirus/commit/b9332263e6d81a167dc02f2ed015c0cc961388bf))
+* **Brazil-dataset:** Integrate with brazil API ([0e4ec7f](https://github.com/GuiMend/humanity-agains-coronavirus/commit/0e4ec7f4ae9e92a8bb8770b4d3349409569f315a))
+* **Dashboard:** Update dashboards to fetch dynamic data ([c459492](https://github.com/GuiMend/humanity-agains-coronavirus/commit/c459492a210826b1a59c15f947230a31e515cdfe))
+* **Image:** Add bg image author source ([256c08a](https://github.com/GuiMend/humanity-agains-coronavirus/commit/256c08a0d2734e3c034431b0a4df456a8748ba73))
+* **Int:** Update languages files ([39bfa19](https://github.com/GuiMend/humanity-agains-coronavirus/commit/39bfa19d8d9e2fd29df8deff08c2ad3a5289f32e))
+* **Summary:** Add support for brazil dataset ([ece163d](https://github.com/GuiMend/humanity-agains-coronavirus/commit/ece163daa2670407463bc7c3ceb5b41aae6f581c))
+* **Table:** Add support for brazil dataset ([e313730](https://github.com/GuiMend/humanity-agains-coronavirus/commit/e313730772a9f1c584aebe6f87b8b7f2e125fce5))
+
+
+
 ## [0.1.3](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.1.2...v0.1.3) (2020-03-22)
 
 
