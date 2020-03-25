@@ -1,18 +1,11 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 
-import Details from './details'
 import styles from './styles.css'
 
 const relativeSpeed = percent => {
   if (percent <= 0.05) return 'Low'
   if (percent <= 0.1) return 'Medium'
-  return 'High'
-}
-
-const relativeDeathRate = percent => {
-  if (percent <= 0.01) return 'Low'
-  if (percent <= 0.3) return 'Medium'
   return 'High'
 }
 
@@ -182,14 +175,33 @@ export const BRAZIL_DATA_FORMAT = t => [
   },
   {
     key: 1,
-    id: 'confirmed',
+    id: 'cases',
     tooltip: t('tooltip:cases'),
     label: t('common:cases'),
     style: { minWidth: 30 },
     align: 'right',
     className: () => '',
     applyStyle: () => false,
-    format: ({ confirmed }) => <b>{confirmed.toLocaleString()}</b>,
+    format: ({ cases }) => <b>{cases.toLocaleString()}</b>,
+  },
+  {
+    key: 3,
+    id: 'todayCases',
+    tooltip: t('tooltip:todayCases'),
+    label: t('common:todayCases'),
+    className: ({ cases, todayCases }) =>
+      `todayCasesRow${todayCases ? relativeSpeed(todayCases / cases) : 'None'}`,
+    style: { minWidth: 100 },
+    align: 'right',
+    applyStyle: () => true,
+    format: ({ cases, todayCases }) => (
+      <span>
+        {todayCases.toLocaleString()} <br />
+        <span className={styles['new-cases']}>
+          (+{((todayCases / cases) * 100 || 0).toFixed(2)}%)
+        </span>
+      </span>
+    ),
   },
   {
     key: 4,
@@ -198,9 +210,8 @@ export const BRAZIL_DATA_FORMAT = t => [
     label: t('common:deaths'),
     style: { minWidth: 20 },
     align: 'right',
-    className: ({ confirmed, deaths }) =>
-      `todayCasesRow${deaths ? relativeDeathRate(deaths / confirmed) : 'None'}`,
-    applyStyle: () => true,
+    className: () => '',
+    applyStyle: () => false,
     format: ({ confirmed, deaths }) => (
       <span>
         {deaths.toLocaleString()} <br />
@@ -211,16 +222,35 @@ export const BRAZIL_DATA_FORMAT = t => [
     ),
   },
   {
+    key: 5,
+    id: 'todayDeaths',
+    tooltip: t('tooltip:todayDeaths'),
+    label: t('common:todayDeaths'),
+    style: { minWidth: 110 },
+    align: 'right',
+    className: ({ deaths, todayDeaths }) =>
+      `todayDeathsRow${todayDeaths ? relativeSpeed(todayDeaths / deaths) : 'None'}`,
+    applyStyle: () => true,
+    format: ({ deaths, todayDeaths }) => (
+      <span>
+        {todayDeaths.toLocaleString()} <br />
+        <span className={styles['new-cases']}>
+          (+{((todayDeaths / deaths) * 100 || 0).toFixed(2)}%)
+        </span>
+      </span>
+    ),
+  },
+  {
     key: 9,
     id: 'confirmedPer100kInhabitants',
     tooltip: t('tooltip:confirmedPer100kInhabitants'),
     label: t('common:confirmedPer100kInhabitants'),
-    style: { minWidth: 40 },
+    style: { minWidth: 100 },
     align: 'right',
     className: () => '',
     applyStyle: () => false,
     format: ({ confirmedPer100kInhabitants }) =>
-      confirmedPer100kInhabitants ? confirmedPer100kInhabitants.toLocaleString() : '-',
+      confirmedPer100kInhabitants ? confirmedPer100kInhabitants.toFixed(2).toLocaleString() : '-',
   },
   {
     key: 10,
@@ -233,17 +263,6 @@ export const BRAZIL_DATA_FORMAT = t => [
     applyStyle: () => false,
     format: ({ confirmedPer100kInhabitants }) =>
       confirmedPer100kInhabitants ? `${(confirmedPer100kInhabitants / 1000).toFixed(3)} %` : '-',
-  },
-  {
-    key: 11,
-    id: 'details',
-    label: t('common:seeDetails'),
-    tooltip: t('tooltip:order'),
-    style: { minWidth: 10 },
-    align: 'center',
-    className: () => '',
-    applyStyle: () => false,
-    format: ({ state, hideDetails }) => (hideDetails ? '' : <Details state={state} />),
   },
 ]
 
@@ -265,18 +284,37 @@ export const BRAZIL_CITY_DATA_FORMAT = t => [
     style: { minWidth: 30 },
     className: () => '',
     applyStyle: () => false,
-    format: ({ city }) => city,
+    format: ({ city }) => (city === 'nonInformed' ? t('common:nonInformed') : city),
   },
   {
     key: 1,
-    id: 'confirmed',
+    id: 'cases',
     tooltip: t('tooltip:cases'),
     label: t('common:cases'),
     style: { minWidth: 30 },
     align: 'right',
     className: () => '',
     applyStyle: () => false,
-    format: ({ confirmed }) => <b>{confirmed.toLocaleString()}</b>,
+    format: ({ cases }) => <b>{cases.toLocaleString()}</b>,
+  },
+  {
+    key: 3,
+    id: 'todayCases',
+    tooltip: t('tooltip:todayCases'),
+    label: t('common:todayCases'),
+    className: ({ cases, todayCases }) =>
+      `todayCasesRow${todayCases ? relativeSpeed(todayCases / cases) : 'None'}`,
+    style: { minWidth: 100 },
+    align: 'right',
+    applyStyle: () => true,
+    format: ({ cases, todayCases }) => (
+      <span>
+        {todayCases ? todayCases?.toLocaleString() : '-'} <br />
+        <span className={styles['new-cases']}>
+          (+{((todayCases / cases) * 100 || 0).toFixed(2)}%)
+        </span>
+      </span>
+    ),
   },
   {
     key: 4,
@@ -285,14 +323,32 @@ export const BRAZIL_CITY_DATA_FORMAT = t => [
     label: t('common:deaths'),
     style: { minWidth: 20 },
     align: 'right',
-    className: ({ confirmed, deaths }) =>
-      `todayCasesRow${deaths ? relativeDeathRate(deaths / confirmed) : 'None'}`,
-    applyStyle: () => true,
+    className: () => '',
+    applyStyle: () => false,
     format: ({ confirmed, deaths }) => (
       <span>
         {deaths.toLocaleString()} <br />
         <span className={styles['new-cases']}>
           ({((deaths / confirmed) * 100 || 0).toFixed(2)}%)
+        </span>
+      </span>
+    ),
+  },
+  {
+    key: 5,
+    id: 'todayDeaths',
+    tooltip: t('tooltip:todayDeaths'),
+    label: t('common:todayDeaths'),
+    style: { minWidth: 110 },
+    align: 'right',
+    className: ({ deaths, todayDeaths }) =>
+      `todayDeathsRow${todayDeaths ? relativeSpeed(todayDeaths / deaths) : 'None'}`,
+    applyStyle: () => true,
+    format: ({ deaths, todayDeaths }) => (
+      <span>
+        {todayDeaths ? todayDeaths.toLocaleString() : '-'} <br />
+        <span className={styles['new-cases']}>
+          (+{((todayDeaths / deaths) * 100 || 0).toFixed(2)}%)
         </span>
       </span>
     ),
@@ -307,7 +363,7 @@ export const BRAZIL_CITY_DATA_FORMAT = t => [
     className: () => '',
     applyStyle: () => false,
     format: ({ confirmedPer100kInhabitants }) =>
-      confirmedPer100kInhabitants ? confirmedPer100kInhabitants.toLocaleString() : '-',
+      confirmedPer100kInhabitants ? confirmedPer100kInhabitants.toFixed(2).toLocaleString() : '-',
   },
   {
     key: 10,

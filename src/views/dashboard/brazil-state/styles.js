@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/styles'
 
 export default makeStyles(() => ({
-  detailIcon: {
-    height: '20px',
-    width: '20px',
+  title: {
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 600,
   },
 }))

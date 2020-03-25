@@ -40,7 +40,7 @@ const WorldDashboard = () => {
         </Typography>
       </Grid>
       <Grid item className={stylesDashboard.fullWidth}>
-        <Link component={RouterLink} to="/" variant="body2" className={stylesDashboard.link}>
+        <Link component={RouterLink} to="/" variant="body2" className={stylesDashboard.worldLink}>
           <Button
             aria-label="ver detalhes"
             color="primary"

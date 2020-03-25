@@ -15,6 +15,7 @@ import {
   Typography,
   Tooltip,
 } from '@material-ui/core'
+import { navigate } from '@reach/router'
 
 import Loader from '_components/loader'
 
@@ -24,15 +25,16 @@ import useStyles from './styles'
 const CovidTable = ({ columns, data, loading, brazil }) => {
   const styles = useStyles()
   const { t } = useTranslation(['common', 'country'])
-  const [orderBy, setOrderBy] = useState(brazil ? 'confirmed' : 'cases')
+  const [orderBy, setOrderBy] = useState('cases')
   const [order, setOrder] = useState('desc')
   const COLUMNS = columns(t)
+
+  const stateView = brazil && !data?.[0]?.city
 
   const firstRow = data.reduce(
     (acc, cur) => ({
       ...acc,
       cases: acc.cases + cur.cases,
-      confirmed: acc.confirmed + cur.confirmed,
       todayCases: acc.todayCases + cur.todayCases,
       deaths: acc.deaths + cur.deaths,
       todayDeaths: acc.todayDeaths + cur.todayDeaths,
@@ -47,7 +49,6 @@ const CovidTable = ({ columns, data, loading, brazil }) => {
       casesPerMillion: null,
       confirmedPer100kInhabitants: null,
       cases: 0,
-      confirmed: 0,
       todayCases: 0,
       deaths: 0,
       todayDeaths: 0,
@@ -55,6 +56,13 @@ const CovidTable = ({ columns, data, loading, brazil }) => {
       active: 0,
       critical: 0,
     }
+  )
+
+  const goTo = useCallback(
+    url => () => {
+      navigate(url)
+    },
+    []
   )
 
   const descendingComparator = useCallback(
@@ -143,7 +151,12 @@ const CovidTable = ({ columns, data, loading, brazil }) => {
                 ))}
               </TableRow>
               {stableSort(data, getComparator()).map((row, rowIndex) => (
-                <TableRow key={row.country || row.city || row.state} hover>
+                <TableRow
+                  key={row.country || row.city || row.state}
+                  hover
+                  className={classnames({ [styles.pointer]: stateView })}
+                  onClick={stateView ? goTo(`/brasil/${row?.state?.toLowerCase()}`) : null}
+                >
                   {COLUMNS.map(({ format, applyStyle, className, ...column }) => (
                     <TableCell
                       {...column}
