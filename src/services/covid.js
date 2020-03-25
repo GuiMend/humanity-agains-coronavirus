@@ -6,7 +6,10 @@ const COVID_API = 'https://corona.lmao.ninja'
 
 const instance = axios.create({
   baseURL: COVID_API,
-  headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+    'Access-Control-Allow-Origin': '*',
+  },
 })
 
 export const getAllCases = () => get(['all'], {})(instance)

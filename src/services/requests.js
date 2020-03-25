@@ -25,9 +25,14 @@ const decamelizePayload = data =>
 // Check if should be decamelized or not
 const parsePayload = (data, transformPayload) => (transformPayload ? decamelizePayload(data) : data)
 
-const parseParams = (url, config, data) => fn => {
+const parseParams = (newInstance, url, config, data) => fn => {
   const { removeTrailingSlash, transformPayload, ...configParams } = config
-  if (fn === instance.delete || fn === instance.get) {
+  if (
+    fn === instance.delete ||
+    fn === instance.get ||
+    fn === newInstance.delete ||
+    fn === newInstance.get
+  ) {
     return fn(parseURL(url, removeTrailingSlash), parseConfig(configParams))
       .then(returnData(transformPayload))
       .catch(handleResponseError)
@@ -41,25 +46,25 @@ const parseParams = (url, config, data) => fn => {
     .catch(handleResponseError)
 }
 
-export const post = (...params) => parseParams(...params)(instance.post)
-export const patch = (...params) => parseParams(...params)(instance.patch)
-export const put = (...params) => parseParams(...params)(instance.put)
-export const upload = (...params) => parseParams(...params)(instance.post)
-export const del = (...params) => parseParams(...params)(instance.delete)
-export const get = (...params) => parseParams(...params)(instance.get)
+export const post = (...params) => parseParams(null, ...params)(instance.post)
+export const patch = (...params) => parseParams(null, ...params)(instance.patch)
+export const put = (...params) => parseParams(null, ...params)(instance.put)
+export const upload = (...params) => parseParams(null, ...params)(instance.post)
+export const del = (...params) => parseParams(null, ...params)(instance.delete)
+export const get = (...params) => parseParams(null, ...params)(instance.get)
 
 export const postWithCustomInstance = (...params) => newInstance =>
-  parseParams(...params)(newInstance.post)
+  parseParams(newInstance, ...params)(newInstance.post)
 export const patchWithCustomInstance = (...params) => newInstance =>
-  parseParams(...params)(newInstance.patch)
+  parseParams(newInstance, ...params)(newInstance.patch)
 export const putWithCustomInstance = (...params) => newInstance =>
-  parseParams(...params)(newInstance.put)
+  parseParams(newInstance, ...params)(newInstance.put)
 export const uploadWithCustomInstance = (...params) => newInstance =>
-  parseParams(...params)(newInstance.post)
+  parseParams(newInstance, ...params)(newInstance.post)
 export const delWithCustomInstance = (...params) => newInstance =>
-  parseParams(...params)(newInstance.delete)
+  parseParams(newInstance, ...params)(newInstance.delete)
 export const getWithCustomInstance = (...params) => newInstance =>
-  parseParams(...params)(newInstance.get)
+  parseParams(newInstance, ...params)(newInstance.get)
 
 instance.getURL = url => API_URL + parseURL(url)
 
