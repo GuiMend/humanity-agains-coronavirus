@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/styles'
 export default makeStyles(theme => ({
   titleWrapper: {
     width: '100%',
-    marginTop: theme.spacing(3),
     marginBottom: '150px',
     [theme.breakpoints.up('xl')]: {
       marginTop: 0,
@@ -14,8 +13,8 @@ export default makeStyles(theme => ({
       marginBottom: '160px',
     },
     [theme.breakpoints.down('xs')]: {
-      marginTop: theme.spacing(1),
-      marginBottom: '150px',
+      marginTop: theme.spacing(5),
+      marginBottom: '140px',
     },
   },
   detailIcon: {
@@ -30,6 +29,10 @@ export default makeStyles(theme => ({
     width: '100%',
   },
   link: {
+    textDecoration: 'none',
+  },
+  worldLink: {
+    textDecoration: 'none',
     float: 'right',
   },
 }))
