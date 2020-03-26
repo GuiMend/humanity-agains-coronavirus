@@ -38,7 +38,7 @@ export const WORLDOMETER_DATA_FORMAT = t => [
     align: 'right',
     className: () => '',
     applyStyle: () => false,
-    format: ({ cases }) => <b>{cases.toLocaleString()}</b>,
+    format: ({ cases }) => <b>{cases ? cases.toLocaleString() : '-'}</b>,
   },
   {
     key: 3,
@@ -70,7 +70,7 @@ export const WORLDOMETER_DATA_FORMAT = t => [
     applyStyle: () => false,
     format: ({ cases, deaths }) => (
       <span>
-        {deaths.toLocaleString()} <br />
+        {deaths ? deaths.toLocaleString() : '-'} <br />
         <span className={styles['new-cases']}>({((deaths / cases) * 100 || 0).toFixed(2)}%)</span>
       </span>
     ),
@@ -103,7 +103,7 @@ export const WORLDOMETER_DATA_FORMAT = t => [
     align: 'right',
     className: () => '',
     applyStyle: () => false,
-    format: ({ recovered }) => <b>{recovered.toLocaleString()}</b>,
+    format: ({ recovered }) => <b>{recovered ? recovered.toLocaleString() : '-'}</b>,
   },
   {
     key: 7,
@@ -114,7 +114,7 @@ export const WORLDOMETER_DATA_FORMAT = t => [
     align: 'right',
     className: () => '',
     applyStyle: () => false,
-    format: ({ active }) => active.toLocaleString(),
+    format: ({ active }) => (active ? active.toLocaleString() : '-'),
   },
   {
     key: 8,
@@ -125,7 +125,7 @@ export const WORLDOMETER_DATA_FORMAT = t => [
     align: 'right',
     className: () => '',
     applyStyle: () => false,
-    format: ({ critical }) => critical.toLocaleString(),
+    format: ({ critical }) => (critical ? critical.toLocaleString() : '-'),
   },
   {
     key: 9,
@@ -182,7 +182,7 @@ export const BRAZIL_DATA_FORMAT = t => [
     align: 'right',
     className: () => '',
     applyStyle: () => false,
-    format: ({ cases }) => <b>{cases.toLocaleString()}</b>,
+    format: ({ cases }) => <b>{cases ? cases.toLocaleString() : '-'}</b>,
   },
   {
     key: 3,
@@ -196,7 +196,7 @@ export const BRAZIL_DATA_FORMAT = t => [
     applyStyle: () => true,
     format: ({ cases, todayCases }) => (
       <span>
-        {todayCases.toLocaleString()} <br />
+        {todayCases ? todayCases.toLocaleString() : '-'} <br />
         <span className={styles['new-cases']}>
           (+{((todayCases / cases) * 100 || 0).toFixed(2)}%)
         </span>
@@ -214,7 +214,7 @@ export const BRAZIL_DATA_FORMAT = t => [
     applyStyle: () => false,
     format: ({ confirmed, deaths }) => (
       <span>
-        {deaths.toLocaleString()} <br />
+        {deaths ? deaths.toLocaleString() : '-'} <br />
         <span className={styles['new-cases']}>
           ({((deaths / confirmed) * 100 || 0).toFixed(2)}%)
         </span>
@@ -233,7 +233,7 @@ export const BRAZIL_DATA_FORMAT = t => [
     applyStyle: () => true,
     format: ({ deaths, todayDeaths }) => (
       <span>
-        {todayDeaths.toLocaleString()} <br />
+        {todayDeaths ? todayDeaths.toLocaleString() : '-'} <br />
         <span className={styles['new-cases']}>
           (+{((todayDeaths / deaths) * 100 || 0).toFixed(2)}%)
         </span>
@@ -295,7 +295,7 @@ export const BRAZIL_CITY_DATA_FORMAT = t => [
     align: 'right',
     className: () => '',
     applyStyle: () => false,
-    format: ({ cases }) => <b>{cases.toLocaleString()}</b>,
+    format: ({ cases }) => <b>{cases ? cases.toLocaleString() : '-'}</b>,
   },
   {
     key: 3,
@@ -327,7 +327,7 @@ export const BRAZIL_CITY_DATA_FORMAT = t => [
     applyStyle: () => false,
     format: ({ confirmed, deaths }) => (
       <span>
-        {deaths.toLocaleString()} <br />
+        {deaths ? deaths.toLocaleString() : '-'} <br />
         <span className={styles['new-cases']}>
           ({((deaths / confirmed) * 100 || 0).toFixed(2)}%)
         </span>
