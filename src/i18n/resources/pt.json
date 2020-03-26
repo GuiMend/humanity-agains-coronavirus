@@ -1,9 +1,9 @@
 {
   "common": {
     "title": "Juntos contra o Coronavirus",
-    "totalCases": "Total casos",
-    "totalDeaths": "Total mortes",
-    "totalRecovered": "Total recuperados",
+    "totalCases": "Total de casos",
+    "totalDeaths": "Total de mortes",
+    "totalRecovered": "Total de pacientes recuperados",
     "lastUpdated": "Atualizado",
     "country": "País",
     "state": "Estado",
@@ -19,9 +19,8 @@
     "confirmedPer100kInhabitants": "Total casos / 100k população",
     "populationPercentAffected": "População Afetada (%)",
     "source": "Fonte",
-    "monitor": "Casos de COVID-19 - Mundo",
-    "monitorBrazil": "Casos de COVID-19 - Brasil",
-    "monitorBrazilState": "Casos de COVID-19",
+    "monitor": "Mundo",
+    "monitorBrazil": "Brasil",
     "deathRate": "Taxa de mortalidade",
     "totalWorld": "Total mundo",
     "totalCountry": "Total país",
@@ -30,6 +29,8 @@
     "seeDetails": "Detalhes",
     "goToWorld": "Mundo",
     "goToBrazil": "Brasil",
+    "nonInformed": "Cidade não informada",
+    "selectState": "Clique no estado para ver os casos por cidade.",
     "paranyuSource": "Feito por Paranyu",
     "brazilSource": "Secretarias de Saúde das Unidades Federativas, dados tratados por Álvaro Justen/Brasil.IO."
   },

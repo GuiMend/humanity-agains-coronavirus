@@ -9,8 +9,12 @@ const instance = axios.create({
   headers: { 'Content-type': 'application/json; charset=UTF-8' },
 })
 
-export const getAllBrazilCases = () =>
-  get(['covid19', 'caso', 'data'], { removeTrailingSlash: true, transformPayload: true })(instance)
+export const getAllBrazilCases = params =>
+  get(['covid19', 'caso', 'data'], {
+    removeTrailingSlash: true,
+    params,
+    transformPayload: true,
+  })(instance)
 
 export const getBrazilDetails = () =>
   get(['covid19'], { removeTrailingSlash: true, transformPayload: true })(instance)

@@ -4,12 +4,16 @@ import PropTypes from 'prop-types'
 import ReactGA from 'react-ga'
 
 import Header from '_components/header'
+import BrazilBG from '_assets/images/people_with_mask_brazil.jpg'
+import WorldBG from '_assets/images/people_with_mask.jpg'
 
 import useStyles from './styles'
 
 const App = ({ children, location }) => {
   const styles = useStyles()
   const { t } = useTranslation()
+
+  const bgImage = location.pathname.includes('world') ? WorldBG : BrazilBG
 
   useEffect(() => {
     ReactGA.pageview(location.pathname + location.search)
@@ -18,7 +22,7 @@ const App = ({ children, location }) => {
   return (
     <div className={styles.app}>
       <Header />
-      <div className={styles.background}>
+      <div className={styles.background} style={{ backgroundImage: `url(${bgImage})` }}>
         <div className={styles.toolbar} />
         <a
           className={styles.link}

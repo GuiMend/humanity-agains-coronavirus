@@ -71,4 +71,11 @@ export default makeStyles(theme => ({
   critical: {
     color: theme.palette.custom.safetyOrange,
   },
+  link: {
+    textDecoration: 'none',
+    color: 'unset',
+  },
+  pointer: {
+    cursor: 'pointer',
+  },
 }))
