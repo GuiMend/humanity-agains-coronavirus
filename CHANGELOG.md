@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.2.0...v0.3.0) (2020-03-25)
+
+
+### Features
+
+* Add brazil bg and uptade theme ([e39af03](https://github.com/GuiMend/humanity-agains-coronavirus/commit/e39af0343d5bc0a6ef2edc60a9c908010c363e89))
+* **API:** Get detailed State and City information ([9d2bfff](https://github.com/GuiMend/humanity-agains-coronavirus/commit/9d2bfff71668e7e588cb15c21021b3f78c2da83f))
+* **Bg:** Add dynamic background ([334d7b6](https://github.com/GuiMend/humanity-agains-coronavirus/commit/334d7b60a7f9885120e9806897f66d39b5039032))
+* **Dashboard:** Update dashboard layouts and integrate ([40e2944](https://github.com/GuiMend/humanity-agains-coronavirus/commit/40e29448868c57a8ddb3cf67a1884df0c8d7151a))
+* **Int:** Update language files ([3327029](https://github.com/GuiMend/humanity-agains-coronavirus/commit/3327029b8ff28f6477038507aba1076c49e138a7))
+* **Table:** Add new cases for brazil states and cities ([7e85706](https://github.com/GuiMend/humanity-agains-coronavirus/commit/7e8570667e2c83f7f58e6191729e667166510f33))
+
+
+
 # [0.2.0](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.1.3...v0.2.0) (2020-03-23)
 
 
