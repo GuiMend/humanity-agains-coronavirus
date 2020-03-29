@@ -1,3 +1,12 @@
+## [0.3.2](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.3.1...v0.3.2) (2020-03-29)
+
+
+### Bug Fixes
+
+* **Table:** Handle null values ([a786c29](https://github.com/GuiMend/humanity-agains-coronavirus/commit/a786c2920e5b67d27435f636893aee9ef2397876))
+
+
+
 # [0.3.0](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.2.0...v0.3.0) (2020-03-25)
 
 
