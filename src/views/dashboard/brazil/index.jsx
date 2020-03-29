@@ -10,11 +10,14 @@ import {
   loadingBrazilStateCases,
   lastUpdatedSelector,
 } from '_modules/covid-brazil/selector'
+import { historicalDataSelector } from '_modules/covid/selector'
 import { BRAZIL_DATA_FORMAT } from '_components/covid-table/constants'
 import { getBrazilStatesCases, getBrazilLatUpdated } from '_modules/covid-brazil/actions'
+import { getHistoricCovidCases } from '_modules/covid/actions'
 import useDashboardStyles from '_views/dashboard/styles'
-import { formatTimeZoneDate } from '_utils/date-format'
+import { formatTimeZoneDate, formatDate } from '_utils/date-format'
 import CasesSummary from '_components/cases-summary'
+import CasesChart from '_components/cases-chart'
 import CovidTable from '_components/covid-table'
 
 import useStyles from './styles'
@@ -22,12 +25,27 @@ import useStyles from './styles'
 const BrazilDashboard = () => {
   const styles = useStyles()
   const stylesDashboard = useDashboardStyles()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const dispatch = useDispatch()
+  const historicalData = useSelector(historicalDataSelector('brazil'))
   const statesData = useSelector(brazilStateCasesSelector)
   const loadingBrazilStatesCovidCases = useSelector(loadingBrazilStateCases)
   const lastUpdated = useSelector(lastUpdatedSelector)
   const date = lastUpdated && formatTimeZoneDate(lastUpdated)
+
+  const format = i18n.language === 'pt' ? 'd/MM' : 'MMMM do'
+
+  const chartCases = historicalData
+    ? historicalData?.map?.(entry => [formatDate(entry.date, format), entry.cases, entry.newCases])
+    : []
+
+  const deathsCases = historicalData
+    ? historicalData?.map?.(entry => [
+        formatDate(entry.date, format),
+        entry.deaths,
+        entry.newDeaths,
+      ])
+    : []
 
   const summaryData = statesData.reduce(
     (acc, curr) => {
@@ -46,6 +64,7 @@ const BrazilDashboard = () => {
   useEffect(() => {
     dispatch(getBrazilStatesCases())
     dispatch(getBrazilLatUpdated())
+    dispatch(getHistoricCovidCases('brazil'))
   }, [dispatch])
 
   return (
@@ -74,6 +93,30 @@ const BrazilDashboard = () => {
           link="https://brasil.io/dataset/covid19/caso"
           source={t('common:brazilSource')}
           date={date}
+        />
+      </Grid>
+      <Grid item className={stylesDashboard.fullWidth}>
+        <CasesChart
+          title={t('charts:titleCases')}
+          vAxis={{ title: t('charts:cases') }}
+          hAxis={{ title: t('charts:date') }}
+          data={[['Date', t('common:cases'), t('common:todayCases')], ...chartCases]}
+          series={{
+            0: { type: 'line', color: 'blue' },
+            1: { color: 'black' },
+          }}
+        />
+      </Grid>
+      <Grid item className={stylesDashboard.fullWidth}>
+        <CasesChart
+          title={t('charts:titleDeaths')}
+          vAxis={{ title: t('charts:death') }}
+          hAxis={{ title: t('charts:date') }}
+          data={[['Date', t('charts:deaths'), t('charts:todayDeaths')], ...deathsCases]}
+          series={{
+            0: { type: 'line', color: 'red' },
+            1: { color: 'black' },
+          }}
         />
       </Grid>
       <Grid item className={stylesDashboard.fullWidth}>
