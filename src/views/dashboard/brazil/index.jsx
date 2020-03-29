@@ -25,7 +25,7 @@ import useStyles from './styles'
 const BrazilDashboard = () => {
   const styles = useStyles()
   const stylesDashboard = useDashboardStyles()
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const historicalData = useSelector(historicalDataSelector('brazil'))
   const statesData = useSelector(brazilStateCasesSelector)
@@ -33,15 +33,15 @@ const BrazilDashboard = () => {
   const lastUpdated = useSelector(lastUpdatedSelector)
   const date = lastUpdated && formatTimeZoneDate(lastUpdated)
 
-  const format = i18n.language === 'pt' ? 'd/MM' : 'MMMM do'
+  // const format = i18n.language === 'pt' ? 'd/MM' : 'MMMM do'
 
   const chartCases = historicalData
-    ? historicalData?.map?.(entry => [formatDate(entry.date, format), entry.cases, entry.newCases])
+    ? historicalData?.map?.(entry => [formatDate(entry.date, 'd/MM'), entry.cases, entry.newCases])
     : []
 
   const deathsCases = historicalData
     ? historicalData?.map?.(entry => [
-        formatDate(entry.date, format),
+        formatDate(entry.date, 'd/MM'),
         entry.deaths,
         entry.newDeaths,
       ])
