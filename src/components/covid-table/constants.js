@@ -52,7 +52,7 @@ export const WORLDOMETER_DATA_FORMAT = t => [
     applyStyle: () => true,
     format: ({ cases, todayCases }) => (
       <span>
-        {todayCases.toLocaleString()} <br />
+        {todayCases ? todayCases.toLocaleString() : '-'} <br />
         <span className={styles['new-cases']}>
           (+{((todayCases / cases) * 100 || 0).toFixed(2)}%)
         </span>
@@ -87,7 +87,7 @@ export const WORLDOMETER_DATA_FORMAT = t => [
     applyStyle: () => true,
     format: ({ deaths, todayDeaths }) => (
       <span>
-        {todayDeaths.toLocaleString()} <br />
+        {todayDeaths ? todayDeaths.toLocaleString() : '-'} <br />
         <span className={styles['new-cases']}>
           (+{((todayDeaths / deaths) * 100 || 0).toFixed(2)}%)
         </span>
