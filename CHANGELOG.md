@@ -1,3 +1,12 @@
+## [0.4.1](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.4.0...v0.4.1) (2020-03-29)
+
+
+### Bug Fixes
+
+* Data format ([4019993](https://github.com/GuiMend/humanity-agains-coronavirus/commit/4019993a77fe65bda0affad3f81729f63f8438d1))
+
+
+
 # [0.4.0](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.3.2...v0.4.0) (2020-03-29)
 
 
