@@ -20,6 +20,6 @@ export const getCasesByCountry = country => get(['countries', country], {})(inst
 
 export const getCasesByStateUSA = () => get(['states'], {})(instance)
 
-export const getHistoricalCases = () => get(['historical'], {})(instance)
+export const getHistoricalCases = country => get(['v2', 'historical', country], {})(instance)
 
 export const getJHUCases = () => get(['jhucsse'], {})(instance)

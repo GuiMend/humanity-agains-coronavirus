@@ -34,6 +34,15 @@
     "paranyuSource": "Feito por Paranyu",
     "brazilSource": "Secretarias de Saúde das Unidades Federativas, dados tratados por Álvaro Justen/Brasil.IO."
   },
+  "charts": {
+    "titleCases": "Total de casos e casos diários",
+    "cases": "Número de casos",
+    "date": "Data",
+    "death": "Número de óbitos",
+    "deaths": "Óbitos",
+    "todayDeaths": "Novos óbitos",
+    "titleDeaths": "Total de óbitos e óbitos diários"
+  },
   "tooltip": {
     "order": "Ordem",
     "country": "Países afetados",

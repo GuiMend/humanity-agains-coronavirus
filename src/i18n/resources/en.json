@@ -34,6 +34,15 @@
     "brazilSource": "Secretarias de Saúde das Unidades Federativas, data treted by Álvaro Justen/Brasil.IO.",
     "selectState": "Click in the row to view the cities affecteds by state"
   },
+  "charts": {
+    "titleCases": "Total cases and new daily cases",
+    "cases": "Number of cases",
+    "date": "Date",
+    "death": "Number of deaths",
+    "deaths": "Deaths",
+    "todayDeaths": "New deaths",
+    "titleDeaths": "Total deaths and new daily deaths"
+  },
   "tooltip": {
     "order": "Order",
     "country": "Countries affected",

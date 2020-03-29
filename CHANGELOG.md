@@ -1,3 +1,12 @@
+# [0.4.0](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.3.2...v0.4.0) (2020-03-29)
+
+
+### Features
+
+* **Chart:** Add historical data charts for Brazil ([4339c76](https://github.com/GuiMend/humanity-agains-coronavirus/commit/4339c76e4181505d3b0791af48e8f5e56bbcb9a8))
+
+
+
 ## [0.3.2](https://github.com/GuiMend/humanity-agains-coronavirus/compare/v0.3.1...v0.3.2) (2020-03-29)
 
 
