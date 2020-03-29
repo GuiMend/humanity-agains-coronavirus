@@ -14,6 +14,13 @@ export const getAllCovidCases = () => dispatch =>
     payload: covidService.getAllCases(),
   })
 
+export const getHistoricCovidCases = country => dispatch =>
+  dispatch({
+    type: GET_HISTORICAL.ACTION,
+    payload: covidService.getHistoricalCases(country),
+    meta: { country },
+  })
+
 export const getCountries = () => dispatch =>
   dispatch({
     type: GET_COUNTRIES.ACTION,
